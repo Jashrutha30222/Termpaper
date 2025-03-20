@@ -1,0 +1,31 @@
+# Azure DevOps Pipeline with Self-Hosted Agent and k6 Performance Testing
+
+trigger:
+- main
+
+pool:
+  name: Default  # Use your self-hosted agent pool name
+
+steps:
+- script: echo "Starting the CI/CD pipeline..."
+  displayName: 'Initialize Pipeline'
+
+- script: |
+    echo "Building the project..."
+    echo "Run necessary build commands here"
+  displayName: 'Build Step'
+
+- script: |
+    echo "Running unit tests..."
+    echo "Execute test scripts here"
+  displayName: 'Run Unit Tests'
+
+- script: |
+    echo "Starting Performance Test..."
+    k6 run loadTest.js
+  displayName: 'Run k6 Performance Test'
+
+- script: |
+    echo "Deploying the application..."
+    echo "Add deployment commands here"
+  displayName: 'Deployment Step'
